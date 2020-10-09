@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    header {
+      background-color: black;
+      min-width: 600px;
+      color: white;
+    }
+
+    nav {
+      margin: auto;
+      width: 600px;
+    }
+
+    main p {
+      margin: 16px auto;
+      width: 600px;
+    }
+
+    #a1 {
+      margin: auto;
+      width: 600px;
+    }
+
+    #a1 div {
+      border: 3px solid black;
+      background-color: pink;
+      width: 180px;
+      height: 40px;
+      box-sizing: border-box;
+      margin-top: 15px;
+      text-align: center;
+      line-height: 34px;
+    }
+
+    #a1 div:hover {
+      background-color: red;
+    }
+
+    #a1 div:nth-child(n+5) {
+      margin-left: 210px;
+    }
+
+    #a1 div:nth-child(n+9) {
+      margin-left: 420px;
+    }
+
+    #a1 div:nth-child(4n+5) {
+      margin-top: -205px;
+    }
+
+    #a2 {
+      margin: 15px auto;
+      width: 600px;
+    }
+
+    #a2 span {
+      border: 3px solid black;
+      background-color: rosybrown;
+      display: inline-block;
+      width: 180px;
+      height: 40px;
+      box-sizing: border-box;
+      line-height: 34px;
+      /* vertical-align: middle; */
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    #a2 span:nth-child(3n+2) {
+      margin-left: 30px;
+    }
+
+    #a2 span:nth-child(3n+3) {
+      margin-left: 30px;
+    }
+
+    #a2 span:hover {
+      background-color: cornflowerblue;
+    }
+
+    #b {
+      margin: 20px auto;
+    }
+
+    #b p {
+      border-bottom: 1px dotted;
+      width: 600px;
+      box-sizing: border-box;
+      margin: 1px auto;
+    }
+
+    #b p:last-child {
+      border: transparent;
+    }
+
+    footer {
+      background-color: violet;
+      text-align: center;
+      margin-bottom: 16px;
+      min-width: 600px;
+
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>hello world 请调整浏览器窗口大小查看效果</nav>
+  </header>
+  <main>
+    <p>页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体
+      宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px
+      页面主体 宽度600px</p>
+    <div id="a1">
+      <div>宽180高40(包含边框)</div>
+      <div>水平间隙30px</div>
+      <div>垂直间隙15px</div>
+      <div>边框宽度3px</div>
+      <div>产品</div>
+      <div>产品</div>
+      <div>产品</div>
+      <div>产品</div>
+      <div>产品</div>
+      <div>产品</div>
+      <div>产品</div>
+      <div>产品</div>
+    </div>
+
+    <div id="a2">
+      <span>宽180高40(包含边框)</span><span>产品</span><span>产品</span><span>水平间隙30px</span><span>产品</span><span>产品</span><span>垂直间隙15px</span><span>产品</span><span>产品</span><span>边框宽度3px</span><span>产品</span><span>产品</span>
+    </div>
+
+    <div id="b">
+      <p>link</p>
+      <p>link</p>
+      <p>link</p>
+      <p>link</p>
+      <p>link</p>
+    </div>
+  </main>
+  <footer>©版权所有<br>本页所有布局均使用块元素</footer>
+</body>
+
+</html>
