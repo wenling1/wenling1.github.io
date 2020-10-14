@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      border: 1px solid;
+    }
+
+    .contain img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+    }
+
+    .background {
+      width: 800px;
+      height: 200px;
+      background: url(http://pic1.win4000.com/mobile/2020-04-28/5ea78a6d79297.jpg), url(https://pic4.zhimg.com/v2-3be05963f5f3753a8cb75b6692154d4a_1440w.jpg?source=172ae18b), url(https://pic.qqtn.com/up/2019-9/15690311636958128.jpg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: left, center, right;
+    }
+
+    #tree {
+      height: 200px;
+    }
+
+    #scene {
+      width: 200px;
+    }
+
+    #cloud {
+      width: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="contain">
+    <img src="http://pic1.win4000.com/mobile/2020-04-28/5ea78a6d79297.jpg" alt="">
+    <img src="https://pic4.zhimg.com/v2-3be05963f5f3753a8cb75b6692154d4a_1440w.jpg?source=172ae18b" alt="">
+    <img src="https://pic.qqtn.com/up/2019-9/15690311636958128.jpg" alt="">
+  </div>
+  <div class="background"></div>
+  <div class="position">
+    <img id="tree" src="http://pic1.win4000.com/mobile/2020-04-28/5ea78a6d79297.jpg" alt="">
+    <img id="scene" src="https://pic4.zhimg.com/v2-3be05963f5f3753a8cb75b6692154d4a_1440w.jpg?source=172ae18b" alt="">
+    <img id="cloud" src=" https://pic.qqtn.com/up/2019-9/15690311636958128.jpg" alt="">
+  </div>
+</body>
+
+</html>
