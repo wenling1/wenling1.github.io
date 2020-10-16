@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      background-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 1px plum;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      font-size: 0;
+    }
+
+    li ul {
+      display: none;
+    }
+
+    li:hover>ul {
+      display: block;
+    }
+
+    li:hover {
+      background-color: cornflowerblue;
+    }
+
+    ul ul {
+      position: absolute;
+      left: 0;
+      top: 100%;
+    }
+
+    ul ul ul {
+      top: 0%;
+      left: 100%;
+    }
+
+    li {
+      white-space: nowrap;
+      position: relative;
+      font-size: 16px;
+      padding: 2px 8px;
+      display: inline-block;
+    }
+
+    li li {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <Ul>
+    <li>
+      文件
+      <ul>
+        <li>新建文件</li>
+        <li>新建窗口</li>
+        <li>保存</li>
+        <li>首选项
+          <ul>
+            <li>设置</li>
+            <li>联机服务设置</li>
+            <li>扩展</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      查看
+      <ul>
+        <li>命令面板</li>
+        <li>打开视窗</li>
+        <li>外观
+          <ul>
+            <li>全屏</li>
+            <li>居中布局</li>
+          </ul>
+        </li>
+        <li>编辑器布局
+          <ul>
+            <li>向上拆分</li>
+            <li>单列</li>
+            <li>双列</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      转到
+      <ul>
+        <li>切换编辑器</li>
+        <li>切换组</li>
+      </ul>
+    </li>
+
+    <li>
+      运行
+      <ul>
+        <li>启动调试</li>
+        <li>打开视窗</li>
+        <li>切换断点 </li>
+        <li>新建断点
+          <ul>
+            <li>条件断点</li>
+            <li>内联断点</li>
+            <li>函数断点</li>
+            <li>记录点</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</body>
+
+</html>

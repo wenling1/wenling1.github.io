@@ -6,18 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    * {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    /* position定高定宽 */
     .out1 {
       border: 2px solid;
-      max-width: 600px;
-      height: 400px;
-      margin: auto;
+      width: 300px;
+      height: 200px;
       position: relative;
     }
 
     .in1 {
       border: 2px solid;
-      width: 200px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
       position: absolute;
       left: 0;
       top: 0;
@@ -26,18 +30,47 @@
       margin: auto;
     }
 
+    /* table-cell不定高 */
     .out2 {
       border: 2px solid;
-      width: 600px;
-      height: 400px;
-      margin: auto;
-      position: relative;
+      width: 300px;
+      height: 200px;
+      display: table-cell;
+      vertical-align: middle;
     }
 
     .in2 {
-      border: 1px solid;
-      width: 200px;
+      border: 2px solid;
+      width: 70%;
+      margin: auto;
+    }
+
+    /* inline-block不定高 */
+    .out3 {
+      border: 2px solid;
+      width: 300px;
       height: 200px;
+      line-height: 200px;
+      text-align: center;
+    }
+
+    .in3 {
+      border: 2px solid;
+      vertical-align: middle;
+      line-height: normal;
+      display: inline-block;
+    }
+
+    /* tansform */
+    .out4 {
+      border: 2px solid;
+      width: 300px;
+      height: 200px;
+      position: relative;
+    }
+
+    .in4 {
+      border: 2px solid;
       position: absolute;
       left: 50%;
       top: 50%;
@@ -49,14 +82,23 @@
 </head>
 
 <body>
-  <div class="out1">
-    <span class="in1"></span>
-  </div>
+  <section class="out1">
+    <div class="in1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis, est.</div>
+  </section>
   <hr>
-  <div class="out2">
-    <span class="in2"></span>
-  </div>
+  <section class="out2">
+    <div class="in2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia minima quidem neque nisi
+      delectus ratione magnam aperiam provident non inventore!</div>
+  </section>
   <hr>
+  <section class="out3">
+    <div class="in3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem dolor voluptatum eveniet
+      voluptas dicta molestiae laborum minima ex maiores repellendus?</div>
+  </section>
+  <hr>
+  <div class="out4">
+    <div class="in4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, blanditiis?</div>
+  </div>
 </body>
 
 </html>
