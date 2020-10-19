@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    section {
+      width: 300px;
+      height: 200px;
+      border: 3px solid;
+      position: relative;
+    }
+
+    section>input {
+      display: none;
+    }
+
+    section ul {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    section ul li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: .6s;
+    }
+
+    section ul li img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    section ul li label {
+      background-color: rgb(0, 0, 0, 0.5);
+      cursor: pointer;
+      width: 25px;
+      text-align: center;
+      line-height: 50px;
+      height: 50px;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      position: absolute;
+    }
+
+    section ul li label:hover {
+      background-color: gold;
+    }
+
+    section ul li label:nth-last-child(2) {
+      left: 0;
+    }
+
+    section ul li label:nth-last-child(1) {
+      right: 0;
+    }
+
+
+    input:nth-child(1):checked~ul.slides>li:nth-child(1),
+    input:nth-child(2):checked~ul.slides>li:nth-child(2),
+    input:nth-child(3):checked~ul.slides>li:nth-child(3),
+    input:nth-child(4):checked~ul.slides>li:nth-child(4),
+    input:nth-child(5):checked~ul.slides>li:nth-child(5) {
+      opacity: 1;
+      z-index: 8;
+    }
+
+    section .indicators-wrapper {
+      width: 100%;
+      bottom: 0;
+      height: 30px;
+      position: absolute;
+      z-index: 30;
+      text-align: center;
+    }
+
+    section .indicators {
+      display: inline-block;
+      background-color: white;
+      border-radius: 25px;
+    }
+
+    section .indicators label {
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      display: inline-block;
+      background-color: red;
+      margin-left: 3px;
+      margin-right: 3px;
+      cursor: pointer;
+    }
+
+    input:nth-child(1):checked~div.indicators-wrapper label:nth-child(1),
+    input:nth-child(2):checked~div.indicators-wrapper label:nth-child(2),
+    input:nth-child(3):checked~div.indicators-wrapper label:nth-child(3),
+    input:nth-child(4):checked~div.indicators-wrapper label:nth-child(4),
+    input:nth-child(5):checked~div.indicators-wrapper label:nth-child(5) {
+      background-color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <input type="radio" name="pic" id="p1" checked>
+    <input type="radio" name="pic" id="p2">
+    <input type="radio" name="pic" id="p3">
+    <input type="radio" name="pic" id="p4">
+    <input type="radio" name="pic" id="p5">
+    <ul class="slides">
+      <li>
+        <a href=""><img src="https://img1.gtimg.com/dajia/pics/hv1/12/79/2245/146001282.jpg" alt=""></a>
+        <label for="p5">&lt;</label>
+        <label for="p2">&gt;</label>
+      </li>
+      <li>
+        <a href=""><img src="https://www.zhifure.com/upload/images/2018/7/5141455828.jpg" alt=""></a>
+        <label for="p1">&lt;</label>
+        <label for="p3">&gt;</label>
+      </li>
+      <li>
+        <a href=""><img src="http://s.news.bandao.cn/news_upload/201603/20160302092648_J3MUHKOQ.jpg" alt=""></a>
+        <label for="p2">&lt;</label>
+        <label for="p4">&gt;</label>
+      </li>
+      <li>
+        <a href=""><img
+            src="https://images.shobserver.com/news/690_390/2018/5/26/09fae5d0-9e46-48aa-a519-84e6a7a0c0ce.jpg"
+            alt=""></a>
+        <label for="p3">&lt;</label>
+        <label for="p5">&gt;</label>
+      </li>
+      <li>
+        <a href=""><img src="https://www.zhifure.com/upload/images/2018/6/27121831935.jpg" alt=""></a>
+        <label for="p4">&lt;</label>
+        <label for="p1">&gt;</label>
+      </li>
+    </ul>
+    <div class="indicators-wrapper">
+      <div class="indicators">
+        <label for="p1"></label>
+        <label for="p2"></label>
+        <label for="p3"></label>
+        <label for="p4"></label>
+        <label for="p5"></label>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
