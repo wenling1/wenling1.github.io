@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
+  <style type="text/less">
     * {
       background-color: rgba(0, 0, 0, 0.1);
       box-shadow: 0 0 1px plum;
@@ -16,29 +16,17 @@
       margin: 0;
       padding: 0;
       font-size: 0;
-    }
 
-    li ul {
-      display: none;
-    }
+      ul {
+        position: absolute;
+        left: 0;
+        top: 100%;
+      }
 
-    li:hover>ul {
-      display: block;
-    }
-
-    li:hover {
-      background-color: cornflowerblue;
-    }
-
-    ul ul {
-      position: absolute;
-      left: 0;
-      top: 100%;
-    }
-
-    ul ul ul {
-      top: 0%;
-      left: 100%;
+      ul ul {
+        top: 0%;
+        left: 100%;
+      }
     }
 
     li {
@@ -47,12 +35,26 @@
       font-size: 16px;
       padding: 2px 8px;
       display: inline-block;
+
+      ul {
+        display: none;
+      }
+      
+      li {
+        display: block;
+      }
+      
+      &:hover {
+        background-color: cornflowerblue;
+      }
+
+      &:hover>ul {
+        display: block;
+      }
     }
 
-    li li {
-      display: block;
-    }
   </style>
+  <script src="less.js"></script>
 </head>
 
 <body>

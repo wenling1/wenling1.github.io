@@ -19,7 +19,7 @@
 
     label span {
       position: absolute;
-      width: 135px;
+      width: 106px;
       height: 135px;
       display: inline-block;
       box-shadow: 0 5px 20px grey;
@@ -29,7 +29,8 @@
       bottom: 0;
       left: 5px;
       margin: auto;
-      transition: .8s;
+      transition: left 1s, width .5s .2s, padding .5s;
+      padding: 0 15px;
     }
 
 
@@ -41,6 +42,9 @@
 
     input:checked+label span {
       left: 123px;
+      width: 135px;
+      padding: 0 0;
+      transition: left 1s, width .5s, padding .5s .2s;
     }
   </style>
 </head>
