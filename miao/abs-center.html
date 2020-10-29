@@ -78,6 +78,23 @@
       transform: translate(-50%, -50%);
       /*自己的50% */
     }
+
+    /* flex不定高 */
+    .out5 {
+      border: 2px solid;
+      display: flex;
+      width: 300px;
+      height: 200px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .in5 {
+      border: 2px solid;
+      xheight: 120px;
+      width: 200px;
+      flex-shrink: 0;
+    }
   </style>
 </head>
 
@@ -96,9 +113,14 @@
       voluptas dicta molestiae laborum minima ex maiores repellendus?</div>
   </section>
   <hr>
-  <div class="out4">
+  <section class="out4">
     <div class="in4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, blanditiis?</div>
-  </div>
+  </section>
+  <hr>
+  <section class="out5">
+    <div class="in5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, blanditiis?</div>
+  </section>
+
 </body>
 
 </html>
