@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      background-color: rgba(0, 0, 0, 0.08);
+      xbox-shadow: inset 0 0 1px plum;
+    }
+
+    body {
+      background-color: rgba(17, 23, 23, 0.7);
+      max-width: 800px;
+      margin: auto;
+    }
+
+    span {
+      color: gainsboro;
+      padding: 10px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: gainsboro;
+    }
+
+    h2 {
+      background-color: tomato;
+    }
+
+    code {
+      background-color: #2f4f4f;
+      opacity: 0.8;
+      font-size: 16px;
+      color: white;
+      padding: 3px;
+      border-radius: 5px;
+    }
+
+    button {
+      display: block;
+      margin: 5px auto 50px auto;
+      width: 150px;
+      background-color: slategray;
+      border: none;
+      color: white;
+      border-radius: 3px;
+      padding: 5px;
+    }
+
+    button:last-of-type {
+      margin-top: 40px;
+    }
+
+    [aria-label] {
+      position: relative;
+    }
+
+    [aria-label]::before {
+      content: attr(aria-label);
+      position: absolute;
+      background-color: black;
+      border-radius: .2em;
+      padding: 5px;
+      opacity: 0;
+      transition: .4s;
+      box-sizing: border-box;
+      pointer-events: none;
+    }
+
+    [aria-label]::after {
+      content: '';
+      position: absolute;
+      border: 5px solid black;
+      opacity: 0;
+      transition: .4s;
+      pointer-events: none;
+    }
+
+    /* data-balloon-pos="" 气球方向 */
+    [aria-label]:not([data-balloon-pos])::before,
+    [data-balloon-pos="up"]::before {
+      left: 50%;
+      transform: translate(-50%) translatey(12px);
+      bottom: calc(100% + 10px);
+    }
+
+    [aria-label]:not([data-balloon-pos])::after,
+    [data-balloon-pos="up"]::after {
+      transform: translate(-50%) translatey(12px);
+      left: 50%;
+      top: -10px;
+      border-color: black transparent transparent transparent;
+    }
+
+    [data-balloon-pos="down"]::before {
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translate(-50%) translatey(-12px);
+    }
+
+    [data-balloon-pos="down"]::after {
+      left: 50%;
+      transform: translate(-50%) translatey(-12px);
+      bottom: -10px;
+      border-color: transparent transparent black transparent;
+    }
+
+    [data-balloon-pos="left"]::before {
+      right: calc(100% + 10px);
+      transform: translate(0, -50%) translatex(12px);
+      top: 50%;
+    }
+
+    [data-balloon-pos="left"]::after {
+      transform: translate(0, -50%) translatex(12px);
+      top: 50%;
+      left: -10px;
+      border-color: transparent transparent transparent black;
+    }
+
+    [data-balloon-pos="right"]::before {
+      left: calc(100% + 10px);
+      transform: translate(0, -50%) translatex(-12px);
+      top: 50%;
+    }
+
+    [data-balloon-pos="right"]::after {
+      transform: translate(0, -50%) translatex(-12px);
+      top: 50%;
+      right: -10px;
+      border-color: transparent black transparent transparent;
+    }
+
+    [data-balloon-pos="up-left"]::before {
+      left: 0;
+      transform: translatey(12px);
+      bottom: calc(100% + 10px);
+    }
+
+    [data-balloon-pos="up-left"]::after {
+      transform: translatey(12px);
+      left: 5px;
+      top: -10px;
+      border-color: black transparent transparent transparent;
+    }
+
+    [data-balloon-pos="up-right"]::before {
+      right: 0;
+      transform: translatey(12px);
+      bottom: calc(100% + 10px);
+    }
+
+    [data-balloon-pos="up-right"]::after {
+      transform: translatey(12px);
+      right: 5px;
+      top: -10px;
+      border-color: black transparent transparent transparent;
+    }
+
+    [data-balloon-pos="down-left"]::before {
+      top: calc(100% + 10px);
+      left: 0;
+      transform: translatey(-12px);
+    }
+
+    [data-balloon-pos="down-left"]::after {
+      left: 5px;
+      transform: translatey(-12px);
+      bottom: -10px;
+      border-color: transparent transparent black transparent;
+    }
+
+    [data-balloon-pos="down-right"]::before {
+      top: calc(100% + 10px);
+      right: 0;
+      transform: translatey(-12px);
+    }
+
+    [data-balloon-pos="down-right"]::after {
+      right: 5px;
+      transform: translatey(-12px);
+      bottom: -10px;
+      border-color: transparent transparent black transparent;
+    }
+
+    /* 气泡方向hover */
+    [aria-label]:hover::before,
+    [aria-label]:hover::after {
+      opacity: 1;
+    }
+
+    [aria-label]:not([data-balloon-pos]):hover::before,
+    [aria-label]:not([data-balloon-pos]):hover::after,
+    [aria-label][data-balloon-pos="up"]:hover::before,
+    [aria-label][data-balloon-pos="up"]:hover::after,
+    [aria-label][data-balloon-pos="down"]:hover::before,
+    [aria-label][data-balloon-pos="down"]:hover::after {
+      transform: translate(-50%);
+    }
+
+    [aria-label][data-balloon-pos="left"]:hover::before,
+    [aria-label][data-balloon-pos="left"]:hover::after,
+    [aria-label][data-balloon-pos="right"]:hover::before,
+    [aria-label][data-balloon-pos="right"]:hover::after {
+      transform: translate(0, -50%);
+    }
+
+    [data-balloon-pos="up-left"]:hover::before,
+    [data-balloon-pos="up-left"]:hover::after,
+    [data-balloon-pos="up-right"]:hover::before,
+    [data-balloon-pos="up-right"]:hover::after,
+    [data-balloon-pos="down-left"]:hover::before,
+    [data-balloon-pos="down-left"]:hover::after,
+    [data-balloon-pos="down-right"]:hover::before,
+    [data-balloon-pos="down-right"]:hover::after {
+      transform: translatey(0);
+    }
+
+    /* data-balloon-length="" 气球长度 */
+
+    [aria-label]:not([data-balloon-length])::before {
+      white-space: nowrap;
+      xwidth: max-content;
+    }
+
+    [data-balloon-length="small"]::before {
+      width: 80px;
+    }
+
+    [data-balloon-length="medium"]::before {
+      width: 150px;
+    }
+
+    [data-balloon-length="large"]::before {
+      width: 260px;
+    }
+
+    [data-balloon-length="xlarge"]::before {
+      width: 380px;
+    }
+
+    [data-balloon-length="fit"]::before {
+      width: 100%;
+    }
+
+    /* data-balloon-blunt 动画 */
+    [data-balloon-blunt]::before,
+    [data-balloon-blunt]::after {
+      transition: none;
+    }
+
+    /* data-balloon-visible 一直显示 */
+    [data-balloon-visible]::before,
+    [data-balloon-visible]::after {
+      opacity: 1;
+    }
+
+    [data-balloon-visible]:not([data-balloon-pos])::before,
+    [data-balloon-visible]:not([data-balloon-pos])::after,
+    [data-balloon-visible][data-balloon-pos="up"]::before,
+    [data-balloon-visible][data-balloon-pos="up"]::after,
+    [data-balloon-visible][data-balloon-pos="down"]::before,
+    [data-balloon-visible][data-balloon-pos="down"]::after {
+      transform: translate(-50%);
+    }
+
+    [data-balloon-visible][data-balloon-pos="left"]::before,
+    [data-balloon-visible][data-balloon-pos="left"]::after,
+    [data-balloon-visible][data-balloon-pos="right"]::before,
+    [data-balloon-visible][data-balloon-pos="right"]::after {
+      transform: translate(0, -50%);
+    }
+  </style>
+</head>
+
+<body>
+  <h2>气球方向（data-balloon-pos=""）</h2>
+  <code>&lt;button aria-label="hello world">默认&lt;/button></code>
+  <button aria-label="hello world">默认</button>
+
+  <code>&lt;button aria-label="hello world" data-balloon-pos="up">向上&lt;/button></code>
+  <button aria-label="hello world" data-balloon-pos="up">向上（up）</button>
+
+  <code>&lt;button aria-label="hello world" data-balloon-pos="down">向下（down）&lt;/button></code>
+  <button aria-label="hello world" data-balloon-pos="down">向下（down）</button>
+
+  <code>&lt;button aria-label="hello world" data-balloon-pos="left">向左（left）&lt;/button></code>
+  <button aria-label="hello world" data-balloon-pos="left">向左（left）</button>
+
+  <code>&lt;button aria-label="hello world" data-balloon-pos="right">向右（right）&lt;/button></code>
+  <button aria-label="hello world" data-balloon-pos="right">向右（right）</button>
+
+  <code>&lt;button aria-label="hello world" data-balloon-pos="up-left">上左方（up-left）&lt;/button></code>
+  <button aria-label="hello world" data-balloon-pos="up-left">上左方（up-left）</button>
+
+  <code>&lt;button aria-label="hello world" data-balloon-pos="up-right">上右方（up-right）&lt;/button></code>
+  <button aria-label="hello world" data-balloon-pos="up-right">上右方（up-right）</button>
+
+  <code>&lt;button aria-label="hello world" data-balloon-pos="down-left">下左方（down-left）&lt;/button></code>
+  <button aria-label="hello world" data-balloon-pos="down-left">下左方（down-left）</button>
+
+  <code>&lt;button aria-label="hello world" data-balloon-pos="down-right">下右方（down-right）&lt;/button></code>
+  <button aria-label="hello world" data-balloon-pos="down-right">下右方（down-right）</button>
+
+  <h2>气球长度（data-balloon-length=""）</h2>
+  <code>&lt;button data-balloon-length="small" aria-label="hello world">小气球（small）&lt;/button></code>
+  <button data-balloon-length="small" aria-label="hello world">小气球（small）</button>
+
+  <code>&lt;button data-balloon-length="medium"
+    aria-label="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni, a?">中等气球（medium）<&lt;/button></code>
+  <button data-balloon-length="medium"
+    aria-label="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni, a?">中等气球（medium）</button>
+
+  <code>&lt;button data-balloon-length="large"
+    aria-label="Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus minus unde laboriosam iure, nemo maiores dicta quae provident consequuntur?">大气球（large）&lt;/button></code>
+  <button data-balloon-length="large"
+    aria-label="Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus minus unde laboriosam iure, nemo maiores dicta quae provident consequuntur?">大气球（large）</button>
+
+
+  <code>&lt;button data-balloon-length="xlarge"
+    aria-label="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, id modi porro vel impedit laboriosam, at esse a ipsum soluta ducimus incidunt laudantium reiciendis minus voluptatibus adipisci rerum facilis doloribus!">超大气球（xlarge）&lt;/button></code>
+  <button data-balloon-length="xlarge"
+    aria-label="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, id modi porro vel impedit laboriosam, at esse a ipsum soluta ducimus incidunt laudantium reiciendis minus voluptatibus adipisci rerum facilis doloribus!">超大气球（xlarge）</button>
+
+  <code>&lt;button data-balloon-length="fit"
+      aria-label="Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, tempore!">与按钮相同宽度的气球（fit）&lt;/button></code>
+  <button data-balloon-length="fit"
+    aria-label="Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, tempore!">与按钮相同宽度的气球（fit）</button>
+
+
+  <h2>无动画（data-balloon-blunt）</h2>
+  <code>&lt;button data-balloon-blunt aria-label="hello world">无动画&lt;button></code>
+  <button data-balloon-blunt aria-label="hello world">无动画</button>
+
+
+  <h2>一直显示（data-balloon-visible）</h2>
+  <code>&lt;button data-balloon-visible aria-label="hello world">一直显示气球&lt;button></code>
+  <button data-balloon-visible aria-label="hello world">一直显示气球</button>
+  <br><br>
+
+  <span>参考：<a href="https://kazzkiq.github.io/balloon.css/">https://kazzkiq.github.io/balloon.css/</a></span>
+</body>
+
+</html>
