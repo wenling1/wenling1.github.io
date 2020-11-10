@@ -28,7 +28,7 @@
 <script id="ch0103/05" type="N">
   var a = Number(prompt("输入整数a："))
   var b = Number(prompt("输入不为0的整数b："))
-  console.log((a / b).toFixed(8))  //toFixed()保留几位小数
+  console.log((a / b).toFixed(9))  //toFixed()保留几位小数
 </script>
 
 <script id="ch0103/06" type="N">
@@ -54,8 +54,8 @@
 <script id="ch0103/09" type="N">
   var r = Number(prompt("输入圆的半径r："))
   console.log((2 * r).toFixed(4))
-  console.log((2 * r * Math.PI).toFixed(4))
-  console.log((Math.PI * r * r).toFixed(4))
+  console.log((2 * r * 3.14159).toFixed(4))
+  console.log((3.14159 * r * r).toFixed(4))
 </script>
 
 <script id="ch0103/10" type="N">
@@ -67,7 +67,7 @@
 <script id="ch0103/11" type="N">
   var a = Number(prompt("输入a："))
   var b = Number(prompt("输入b："))
-  console.log(a % b)
+  console.log((a % b).toFixed(4))
 </script>
 
 <script id="ch0103/12" type="N">
@@ -334,7 +334,7 @@
   }
 </script>
 
-<script id="ch0104/19" xtype="NX">
+<script id="ch0104/19" type="NX">
   var x = Number(prompt("输入第一个参数："))
   var y = Number(prompt("输入第二个参数："))
   var n = String(prompt("输入操作符："))
