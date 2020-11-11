@@ -77,10 +77,10 @@
 
 <script id="ch0103/13" type="N">
   var n = Number(prompt("输入一个三位数："))
-  var a = Number(parseInt(n / 100))
-  var b = Number(parseInt((n - 100 * a) / 10))
-  var c = Number(n - 100 * a - 10 * b)
-  console.log("" + c + b + a)
+  var a = n % 10
+  var b = (n - a) / 10 % 10
+  var c = (n - a - b * 10) / 100 % 10
+  console.log("" + a + b + c)
 </script>
 
 
@@ -116,7 +116,8 @@
   var c = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
   var b = Math.sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3))
   var a = Math.sqrt((x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3))
-  console.log(((a + b + c) / 2).toFixed(2))  
+  var p = (a + b + c) / 2
+  console.log((Math.sqrt(p * (p - a) * (p - b) * (p - c))).toFixed(2))  
 </script>
 
 <script id="ch0103/18" type="N">
@@ -149,8 +150,12 @@
 </script>
 
 <script id="ch0104/02" type="N">
-  var a = Number(prompt("输入一个数字："))
-  console.log((Math.abs(a)).toFixed(2))
+  var n = Number(prompt("输入一个数字："))
+  if (n >= 0) {
+    console.log(n)
+  } else {
+    console.log(-n)
+  }
 </script>
 
 <script id="ch0104/03" type="N">
@@ -212,33 +217,65 @@
 </script>
 
 <script id="ch0104/09" type="N">
+  // var n = Number(prompt("输入一个整数："))
+  // if (n % 3 == 0 && n % 5 == 0 && n % 7 == 0) {
+  //   console.log("3 5 7")
+  // } else if (n % 3 == 0 && n % 5 == 0) {
+  //   console.log("3 5")
+  // } else if (n % 3 == 0 && n % 7 == 0) {
+  //   console.log("3 7")
+  // } else if (n % 5 == 0 && n % 7 == 0) {
+  //   console.log("5 7")
+  // } else if (n % 3 == 0) {
+  //   console.log("3")
+  // } else if (n % 5 == 0) {
+  //   console.log("5")
+  // } else if (n % 7 == 0) {
+  //   console.log("7")
+  // } else {
+  //   console.log("n")
+  // }
+
   var n = Number(prompt("输入一个整数："))
-  if (n % 3 == 0 && n % 5 == 0 && n % 7 == 0) {
-    console.log("3 5 7")
-  } else if (n % 3 == 0 && n % 5 == 0) {
-    console.log("3 5")
-  } else if (n % 3 == 0 && n % 7 == 0) {
-    console.log("3 7")
-  } else if (n % 5 == 0 && n % 7 == 0) {
-    console.log("5 7")
-  } else if (n % 3 == 0) {
-    console.log("3")
-  } else if (n % 5 == 0) {
-    console.log("5")
-  } else if (n % 7 == 0) {
-    console.log("7")
-  } else {
-    console.log("n")
+  var flag = false
+  if (n % 3 == 0) {
+    flag = true
+    console.log(3)
+  }
+  if (n % 5 == 0) {
+    flag = true
+    console.log(5)
+  }
+  if (n % 7 == 0) {
+    flag = true
+    console.log(7)
+  }
+  if (!flag) {
+    console.log(n)
   }
 </script>
 
 <script id="ch0104/10" type="N">
-  var n = Number(prompt("输入一个语文成绩："))
-  var m = Number(prompt("输入一个数学成绩："))
-  if (n < 60 && m >= 60 || m < 60 && n >= 60) {
-    console.log("1")
+  // var n = Number(prompt("输入语文成绩："))
+  // var m = Number(prompt("输入数学成绩："))
+  // if (n < 60 && m >= 60 || m < 60 && n >= 60) {
+  //   console.log("1")
+  // } else {
+  //   console.log("0")
+  // }
+  var a = Number(prompt("输入语文成绩："))
+  var b = Number(prompt("输入数学成绩："))
+  var i = 0
+  if (a < 60) {
+    i = i + 1
+  }
+  if (b < 60) {
+    i = i + 1
+  }
+  if (i === 1) {
+    console.log(1)
   } else {
-    console.log("0")
+    console.log(0)
   }
 </script>
 
@@ -335,16 +372,21 @@
 </script>
 
 <script id="ch0104/19" type="NX">
-  var x = Number(prompt("输入第一个参数："))
-  var y = Number(prompt("输入第二个参数："))
-  var n = String(prompt("输入操作符："))
-  if (y == 0) {
-    console.log("Divided by zero!")
-  } else if (n != "+" || n != "-" || n != "*" || n != "/") {
-    console.log("Invalid operator!")
-  }
-  else {
-    console.log(xny)
+  var n1 = Number(prompt("输入第一个参数："))
+  var n2 = Number(prompt("输入第二个参数："))
+  var o = prompt("请输入运算符:");
+  if (o == "+") {
+    console.log(n1 + n2);
+  } else if (o == "-") {
+    console.log(n1 - n2);
+  } else if (o == "*") {
+    console.log(n1 * n2);
+  } else if (o == "/" && n2 == 0) {
+    console.log("Divided by zero!");
+  } else if (o == "/") {
+    console.log(n1 / n2);
+  } else {
+    console.log("Invalid operator!");
   }
 </script>
 
