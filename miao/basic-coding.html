@@ -644,6 +644,16 @@
     b = c
   }
   console.log(c)
+
+  // var k = Number(prompt(""))
+  // var a = 1
+  // var b = 0
+  // for (var i = 0; i < k; i++) {
+  //   var c = a + b
+  //   a = b
+  //   b = c
+  // }
+  // console.log(c)
 </script>
 
 <script id="ch0105/18" type="N">
@@ -704,4 +714,190 @@
       break
     }
   }
+</script>
+
+<script id="ch0105/22" type="N">
+  var left = 0
+  var save = 0
+  for (var i = 1; i <= 12; i++) {
+    var n = Number(prompt("某个月的预算:"))
+    var left = left + 300 - n
+    if (left < 0) {
+      console.log("-" + i)
+      var flag = 1
+    }
+    save += parseInt(left / 100) * 100
+    left -= parseInt(left / 100) * 100
+  }
+  if (flag != 1) {
+    console.log(save * 1.2 + left)
+  }
+</script>
+
+<script id="ch0105/23" type="N">
+  var m = Number(prompt("药品总量:"))
+  var n = Number(prompt("取药的人数:"))
+  var left = m
+  var a = 0
+  for (var i = 0; i < n; i++) {
+    var x = Number(prompt("希望取走的药品数量:"))
+    if (left > x) {
+      left -= x
+    } else {
+      left = left
+      a++
+    }
+  }
+  console.log(a)
+</script>
+
+<script id="ch0105/24" type="N">
+  var n = Number(prompt("测量次数:"))
+  var a = 0
+  var t = 0
+  for (var i = 0; i < n; i++) {
+    var sbp = Number(prompt("某次收缩压:"))
+    var dbp = Number(prompt("某次舒张压:"))
+    if ((sbp >= 90 && sbp <= 140) && (dbp >= 60 && dbp <= 90)) {
+      a++
+    } else {
+      a = 0
+    }
+    t = Math.max(a, t)
+  }
+  console.log(t)
+</script>
+
+<script id="ch0105/25" type="N">
+  for (var a = 0; a <= 6; a++) {
+    for (var b = 0; b <= 6; b++) {
+      for (var c = 0; c <= 6; c++) {
+        if (a == 0 && b == 0 && c == 0) {
+          //除去0的结果
+        } else if (c + 7 * b + 49 * a == a + 9 * b + 81 * c) {
+          console.log(c + 7 * b + 49 * a)
+          console.log(100 * a + 10 * b + c)
+          console.log(100 * c + 10 * b + a)
+        }
+      }
+    }
+  }
+</script>
+
+<script id="ch0105/26" type="N">
+  var n = Number(prompt("四位数的个数:"))
+  var count = 0
+  for (var i = 0; i < n; i++) {
+    var x = Number(prompt("输入一个四位数:"))
+    var a = parseInt(x / 1000)
+    var b = parseInt((x - a * 1000) / 100)
+    var c = parseInt((x - a * 1000 - b * 100) / 10)
+    var d = x - a * 1000 - b * 100 - c * 10
+    if (d - a - b - c > 0) {
+      count++
+    }
+  }
+  console.log(count)
+</script>
+
+<script id="ch0105/27" type="N">
+  var K = Number(prompt("输入一个整数:"))
+  var count = 0
+  var Sn = 0
+  for (var i = 1; ; i++) {
+    var an = 1 / i
+    Sn += an
+    if (Sn > K) {
+      console.log(i)
+      break
+    }
+  }
+</script>
+
+<script id="ch0105/28" type="N">
+  var n = Number(prompt("输入一个整数:"))
+  while (n) {  //n!=0时一直执行
+    x = n % 10
+    n = parseInt(n / 10)
+    console.log(x)
+  }
+</script>
+
+<script id="ch0105/29" type="X">
+  var x = 0
+  var flag = 0
+  var n = Number(prompt("输入一个整数:"))
+  if (n < 0) {
+    n = -n
+    flag = 1
+  }
+  while (n) {
+    x = n % 10 + x * 10
+    n = parseInt(n / 10)
+  }
+  if (flag == 1) {
+    console.log(-x)
+  } else {
+    console.log(x)
+  }
+</script>
+
+<script id="ch0105/30" type="N">
+  var m = Number(prompt("输入一个正整数:"))
+  var k = Number(prompt("含有几个3:"))
+  var count = 0
+  var flag = 0
+  if (m % 19 == 0) {
+    flag = 1
+  }
+  while (m) {
+    x = m % 10
+    m = parseInt(m / 10)
+    if (x == 3) {
+      count++
+    }
+  }
+  if (flag == 1 && count == k) {
+    console.log("YES")
+  } else {
+    console.log("NO")
+  }
+</script>
+
+<!-- <script id="ch0105/31" xtype="N">
+  var N = Number(prompt("多少盏灯:"))
+  var M = Number(prompt("多少个人:"))
+  for (var i = 1; i <= M; i++) {
+    var off = i * N
+  }
+</script> -->
+
+<script id="ch0105/32" type="N">
+  var n = Number(prompt("输入一个正整数:"))
+  var pn = 1
+  var qn = 2
+  var Sn = 0
+  var tmp = 0
+  for (var i = 0; i < n; i++) {
+    Sn += qn / pn
+    tmp = qn
+    qn += pn
+    pn = tmp
+  }
+  console.log(Sn.toFixed(4))
+</script>
+
+<script id="ch0105/33" type="N">
+  var n = Number(prompt("输入一个正整数:"))
+  var an = 1
+  var Sn = 0
+  for (var i = 1; i <= n; i++) {
+    if (i % 2 != 0) {
+      an = 1 / i
+    } else {
+      an = -1 / i
+    }
+    Sn += an
+  }
+  console.log(Sn.toFixed(4))
 </script>
