@@ -476,13 +476,19 @@
 
 
 <script id="ch0105/06" type="N">
-  var max = 0
+  var min = 999999999999
+  var max = -999999999999
   var n = Number(prompt("输入序列个数:"))
   for (var i = 0; i < n; i++) {
-    var input = Number(prompt("输入一个数字:"))
-    var max = Math.max(input, max)
+    var num = Number(prompt("输入一个数字:"))
+    if (num > max) {
+      max = num
+    }
+    if (num < min) {
+      min = num
+    }
   }
-  console.log(max)
+  console.log(max - min)
 </script>
 
 <script id="ch0105/07" type="N">
@@ -609,23 +615,23 @@
   console.log(parseInt(M))
 </script>
 
-<!-- <script id="ch0105/16" xtype="N">
+<script id="ch0105/16" type="N">
   var N = Number(prompt("年薪:"))
   var K = Number(prompt("房子价格增长:"))
-  var M = 0
+  var flag = 0
   var price = 200
-  for (var i = 0; i < 20; i++) {
+  for (var i = 1; i <= 20; i++) {
     price = price * (1 + K / 100)
-    M += 1
-    // if (price <= N * M) {
-    //   console.log(M)
-    //   break;
-    // }
+    if (price <= N * (i + 1)) {
+      console.log(i + 1)
+      flag = 1
+      break
+    }
   }
-  if (price > N * 20) {
+  if (flag == 0) {
     console.log("Impossible")
   }
-</script> -->
+</script>
 
 <script id="ch0105/17" type="N">
   var k = Number(prompt("第几个数:"))
@@ -684,10 +690,18 @@
   console.log(h.toFixed(7))
 </script>
 
-<!-- <script id="ch0105/21" xtype="N">
+<script id="ch0105/21" type="N">
   var N = Number(prompt("输入一个正整数:"))
-  if (N % 2 != 0) {
-    N = N * 3 + 1
-    console.log(N + "*3+1=")
+  while (N > 0) {
+    if (N % 2 != 0 && N != 1) {
+      N = N * 3 + 1
+      console.log((N - 1) / 3 + "*3+1=" + N)
+    } else if (N % 2 == 0) {
+      N = N / 2
+      console.log(2 * N + "/2=" + N)
+    } else if (N == 1) {
+      console.log("End")
+      break
+    }
   }
-</script> -->
+</script>
