@@ -949,7 +949,7 @@
   console.log(sum.toFixed(2))
 </script>
 
-<script id="ch0105/37" ztype="N">
+<script id="ch0105/37" type="N">
   var M = Number(prompt("输入体力最大值:"))
   var N = Number(prompt("输入当前战斗力:"))
   var X = Number(prompt("输入能量元素:"))
@@ -957,12 +957,82 @@
     var up = M / N
     if (M > N) {
       up++
-    } if (X < up) {
+    }
+    if (X < up) {
       break
     }
     X -= Math.ceil(up)
-    up = M / N
     N += Math.floor(up)
   }
   console.log(N)
 </script>
+
+<script id="ch0105/38" type="N">
+  var n = Number(prompt("输入最高次幂:"))
+  for (i = n; i >= 0; i--) {
+    var C = Number(prompt("输入系数:"))
+    if (n == 0) {
+      console.log(0)
+    } else if (i > 0) {
+      console.log(i * C)
+    }
+  }
+</script>
+
+<script id="ch0105/39" type="N">
+  var sum = 0
+  var n = Number(prompt("输入一个小于100的正整数:"))
+  for (i = 1; i <= n; i++) {
+    if (i % 7 && i % 10 != 7 && (i - i % 10) % 10 != 7) {
+      sum += i * i
+    }
+  }
+  console.log(sum)
+</script>
+
+<script id="ch0105/40" type="N">
+  var sum = 0
+  var n = Number(prompt("输入一个正整数:"))
+  for (i = 1; i <= n; i++) {
+    var tmp = i
+    while (tmp) {
+      if (tmp % 10 == 1) {
+        sum++
+      }
+      tmp = parseInt(tmp / 10)
+    }
+  }
+  console.log(sum)
+</script>
+
+<script id="ch0105/41" type="N">
+  var sum = 0
+  var L = Number(prompt("输入一个正整数:"))
+  var R = Number(prompt("输入一个正整数:"))
+  for (i = L; i <= R; i++) {
+    var tmp = i
+    while (tmp) {
+      if (tmp % 10 == 2) {
+        sum++
+      }
+      tmp = parseInt(tmp / 10)
+    }
+  }
+  console.log(sum)
+</script>
+
+<!-- <script id="ch0105/42" xtype="N">
+  var sum = 0
+  var w = Number(prompt("输入矩形的宽:"))
+  var h = Number(prompt("输入矩形的高:"))
+  var a = prompt("输入一个字符:")
+  var x = Number(prompt("空心0，实心1:"))
+  if (x == 1) {
+    for (i = 0; i < w; i++) {
+      for (j = 0; i < h; j++) {
+        console.log(a)
+      }
+      console.log("<br />");
+    }
+  }
+</script> -->
