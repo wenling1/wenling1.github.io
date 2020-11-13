@@ -782,6 +782,19 @@
       }
     }
   }
+
+  // for (var i = 1; i < 999; i++) {
+  //   var a7 = i % 7  //7进制的个位数
+  //   var b7 = (i - a7) / 7 % 7  //7进制的七位数
+  //   var c7 = (i - a7 - b7 * 7) / 7 / 7 % 7  //7进制的四九位数
+  //   var a9 = i % 9  //9进制的个位数
+  //   var b9 = (i - a9) / 9 % 9  //9进制的九位数
+  //   var c9 = (i - a9 - b9 * 9) / 9 / 9 % 9  //9进制的八一位数
+  //   if (a7 == c9 && b7 == b9 && c7 == a9) {
+  //     console.log(i, '' + c7 + b7 + a7, '' + c9 + b9 + a9)
+  //     break
+  //   }
+  // }
 </script>
 
 <script id="ch0105/26" type="N">
@@ -816,9 +829,9 @@
 
 <script id="ch0105/28" type="N">
   var n = Number(prompt("输入一个整数:"))
-  while (n) {  //n!=0时一直执行
-    x = n % 10
-    n = parseInt(n / 10)
+  while (n > 0) {
+    var x = n % 10
+    n = (n - x) / 10
     console.log(x)
   }
 </script>
@@ -900,4 +913,56 @@
     Sn += an
   }
   console.log(Sn.toFixed(4))
+</script>
+
+<script id="ch0105/34" type="N">
+  var n = Number(prompt("输入一个正整数:"))
+  var a = 1
+  var sum = 0
+  for (var i = 1; i <= n; i++) {
+    a *= i
+    sum += a
+  }
+  console.log(sum)
+</script>
+
+<script id="ch0105/35" type="N">
+  var n = Number(prompt("输入一个正整数:"))
+  var a = 1
+  var sum = 1
+  for (var i = 1; i <= n; i++) {
+    a = 1 / i * a
+    sum += a
+  }
+  console.log(sum.toFixed(10))
+</script>
+
+<script id="ch0105/36" type="N">
+  var x = Number(prompt("输入一个单精度浮点数:"))
+  var n = Number(prompt("输入一个正整数:"))
+  var a = 1
+  var sum = 1
+  for (var i = 0; i < n; i++) {
+    a *= x
+    sum += a
+  }
+  console.log(sum.toFixed(2))
+</script>
+
+<script id="ch0105/37" ztype="N">
+  var M = Number(prompt("输入体力最大值:"))
+  var N = Number(prompt("输入当前战斗力:"))
+  var X = Number(prompt("输入能量元素:"))
+  while (X > 0) {
+    var up = M / N
+    if (M > N) {
+      up++
+    } if (X < up) {
+      break
+    }
+    X -= Math.ceil(up)
+    up = M / N
+    N += Math.floor(up)
+  }
+  console.log(N)
 </script>
