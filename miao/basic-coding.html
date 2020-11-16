@@ -1032,22 +1032,58 @@
   console.log(sum)
 </script>
 
-<script id="ch0105/42" ztype="N">
-  var sum = 0
+<script id="ch0105/42" type="N">
   var w = Number(prompt("输入矩形的宽:"))
   var h = Number(prompt("输入矩形的高:"))
-  var a = prompt("输入一个字符:")
+  var char = prompt("输入一个字符:")
   var x = Number(prompt("空心0，实心1:"))
-  var str = ""
+  var str = ''
   if (x == 1) {
-    for (i = 0; i < w; i++) {
-      for (j = 0; i < h; j++) {
-        str += '*'
+    for (var i = 0; i < h; i++) {		//外层循环控制行数
+      for (var j = 0; j < w; j++) {	//内层循环控制列数
+        str += char
+      }
+      str = str + '\n'	//打印w个换行
+    }
+    console.log(str)
+  }
+  if (x == 0) {
+    for (var i = 1; i <= h; i++) {
+      for (var j = 1; j <= w; j++) {
+        if (i == 1 || i == h) {
+          str += char;
+        } else if (j == 1 || j == w) {
+          str += char
+        } else {
+          str = str + ' '
+        }
       }
       str = str + '\n'
     }
-    console.log(str);
+    console.log(str)
   }
+  // var w = Number(prompt("输入矩形的宽:"))
+  // var h = Number(prompt("输入矩形的高:"))
+  // var char = prompt("输入一个字符:")
+  // var fill = Number(prompt("空心0，实心1:"))
+  // var a = char
+  // var b = char
+  // for (var i = 0; i < w - 2; i++) {
+  //   a += char
+  //   if (fill) {
+  //     b += char
+  //   } else {
+  //     b += ' '
+  //   }
+  // }
+  // a += char
+  // b += char
+  // var result = a + '\n'
+  // for (var i = 0; i < h - 2; i++) {
+  //   result += b + '\n'
+  // }
+  // result += a
+  // console.log(result)
 </script>
 
 <script id="ch0105/43" type="N">
