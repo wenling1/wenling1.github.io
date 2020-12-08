@@ -33,8 +33,6 @@ var wenling1 = function () {
     return res
   }
 
-  // join, last, lastIndexOf, fromPairs, head, indexOf, initial, reverse, sortedIndex, every, filter, find, toArray, max, maxBy, min, minBy, sum, sumBy
-
   function drop(ary, n = 1) {
     let res = []
     for (let i = n; i < ary.length; i++) {
@@ -91,9 +89,31 @@ var wenling1 = function () {
     return ary
   }
 
-  function flattenDepth() {
-
+  function flattenDepth(ary, depth = 1) {
+    let s = 0
+    while (ary.some(item => Array.isArray(item))) {
+      ary = [].concat(...ary)
+      s++
+      if (s == depth) {
+        break
+      }
+    }
+    return ary
   }
+
+  function fromPairs(pairs) {
+    let res = {}
+    for (let ary of pairs) {
+      res[ary[0]] = ary[1]
+    }
+    return res
+  }
+  // join, last, lastIndexOf, indexOf, initial, reverse, sortedIndex, every, filter, find, toArray, max, maxBy, min, minBy, sum, sumBy
+  function head(array) {
+    return (array && array.length) ? array[0] : undefined
+  }
+
+
 
   return {
     chunk,
@@ -106,5 +126,8 @@ var wenling1 = function () {
     findLastIndex,
     flatten,
     flattenDeep,
+    flattenDepth,
+    fromPairs,
+    head,
   }
 }()
