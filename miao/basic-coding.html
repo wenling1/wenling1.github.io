@@ -1,3 +1,7 @@
+<!-- http://noi.openjudge.cn/ch0103/
+http://noi.openjudge.cn/ch0104/
+http://noi.openjudge.cn/ch0105/ -->
+
 <meta charset="UTF-8">
 
 <script id="ch0103/01" type="N">
@@ -847,6 +851,9 @@
   while (n) {
     x = n % 10 + x * 10
     n = parseInt(n / 10)
+    // var digit = n % 10
+    // x = x * 10 + digit
+    // n = (n - digit) / 10
   }
   if (flag == 1) {
     console.log(-x)
