@@ -142,7 +142,7 @@ var wenling1 = function () {
   function join(aryay, separator = ',') {
     var res = ''
     for (var i = 0; i < aryay.length - 1; i++) {
-      res += aryay[i] + separator
+      res += '' + aryay[i] + separator
     }
     res = res + aryay[aryay.length - 1]
     return res
