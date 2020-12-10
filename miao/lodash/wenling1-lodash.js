@@ -183,35 +183,33 @@ var wenling1 = function () {
     return res
   }
 
-  // function every(fn, predicate) {
-  //   if (typeof fn !== "function") {
-  //     return false
-  //   }
-  //   var arr = this
-  //   for (var i = 0; i < arr.length; i++) {
-  //     var result = fn.call(predicate, arr[i], i, arr)
-  //     if (!result) return false
-  //   }
-  //   return true
-  // }
+  function every(fn, predicate) {
+    //   if (typeof fn == "function") {
+    //     var arr = this
+    //     for (var i = 0; i < arr.length; i++) {
+    //       var result = fn.call(predicate, arr[i], i, arr)
+    //       if (!result) return false
+    //     }
+    //     return true
+    //   }
+  }
 
-  // function filter(fn, predicate) {
-  //   if (typeof fn !== "function") {
-  //     return false
-  //   }
-  //   var arr = this
-  //   var temp = []
-  //   for (var i = 0; i < arr.length; i++) {
-  //     var result = fn.call(predicate, arr[i], i, arr)
-  //     if (result) temp.push(arr[i])
-  //   }
-  //   return temp
-  // }
+  function filter(fn, predicate) {
+    // if (typeof fn == "function") {
+    //   var arr = this
+    //   var temp = []
+    //   for (var i = 0; i < arr.length; i++) {
+    //     var result = fn.call(predicate, arr[i], i, arr)
+    //     if (result) temp.push(arr[i])
+    //   }
+    //   return temp
+    // }
+  }
 
 
-  // function find(collection, predicate) {
+  function find(collection, predicate) {
 
-  // }
+  }
 
   function max(ary) {
     if (ary == null) return undefined
@@ -297,6 +295,9 @@ var wenling1 = function () {
     return sum
   }
 
+  function curry() {
+
+  }
 
   return {
     chunk,
