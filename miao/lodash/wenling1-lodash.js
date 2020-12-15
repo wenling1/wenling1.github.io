@@ -299,6 +299,10 @@ var wenling1 = function () {
 
   }
 
+  function isArray(val) {
+    return Object.prototype.toString.call(val) === '[object Array]'
+  }
+
   return {
     chunk,
     compact,
@@ -332,6 +336,7 @@ var wenling1 = function () {
     sum,
     sumBy,
     curry,
+    isArray
 
   }
 }()
