@@ -1,12 +1,118 @@
 var wenling1 = function () {
-  function chunk(aryay, size = 1) {
-    let result = []
-    for (let i = 0; i < aryay.length; i += size) {
-      let aryay2 = []
-      for (let j = i; j < size + i && j < aryay.length; j++) {
-        aryay2.push(aryay[j])
+
+  function get(object, path, defaultValues) {
+    var names = path.split('.')
+    for (var name of names) {
+      if (name in Object(object)) {
+        object = object[name]
+      } else
+        return defaultValues
+    }
+    return object
+  }
+
+  function property(path) {
+    // return bind(get, null, window, path)
+    return function (obj) {
+      return get(obj, path)
+    }
+  }
+
+  function isMatch(obj, src) {
+    for (var key in src) {
+      if (src[key] && typeof src[key] == 'object') {
+        if (!isMatch(src[obj], obj[key])) {
+          return false
+        }
+      } else {
+        if (obj[key] !== src[key]) {
+          return false
+        }
       }
-      result.push(aryay2)
+    }
+    return true
+  }
+
+  function matches(src) {
+    return bind(isMatch, null, window, src)
+  }
+
+  function matchesProperty(path, srcValue) {
+    if (Array.isArray(path)) {
+      srcValue = path[1]
+      path = path[0]
+    }
+    return (obj) => {
+      return obj[path] == srcValue
+    }
+  }
+
+  function bind(f, thisArg, ...partials) {
+    return function (...args) {
+      var copy = partials.slice()
+      for (var i = 0; i < copy.length; i++) {
+        if (copy[i] === window) {
+          copy[i] = args.shift()
+        }
+      }
+      return f.call(thisArg, ...copy, ...args)
+    }
+  }
+
+  function iteratee(predicate) {
+    if (typeof predicate === 'function') {
+      return predicate
+    }
+    if (typeof predicate === 'string') {
+      return property(predicate)
+    }
+    if (Array.isArray(predicate)) {
+      return matchesProperty(predicate)
+    }
+    if (typeof predicate === 'object') {
+      return matches(predicate)
+    }
+  }
+
+  // function identity(value) {
+  //   return value
+  // }
+
+  // function baseIteratee(predicate) {
+  //   if (typeof predicate == "function") {
+  //     return predicate
+  //   }
+  //   if (Array.isArray(predicate)) {
+  //     return (item) => item[predicate[0]] == predicate[1]
+  //   }
+  //   if (typeof predicate == "string") {
+  //     return (item) => item[predicate]
+  //   }
+  //   if (typeof predicate == "object") {
+  //     return deepEqual.bind(null, predicate)
+  //   }
+  // }
+
+  // function deepEqual(origin, target) {
+  //   if (typeof target === 'object') {
+  //     if (typeof origin !== 'object') return false
+  //     if (Object.keys(origin).length !== Object.keys(target).length) return false
+  //     for (let key in target)
+  //       if (!compare(origin[key], target[key])) return false
+  //     return true
+  //   } else return origin === target
+  // }
+
+
+
+  function chunk(array, size = 1) {
+    let result = []
+    for (let i = 0; i < array.length; i += size) {
+      let array2 = []
+      for (let j = i; j < size + i && j < array.length; j++) {
+        array2.push(array[j])
+      }
+      result.push(array2)
     }
     return result
   }
@@ -49,37 +155,109 @@ var wenling1 = function () {
     return res
   }
 
-  function fill(aryay, value, start = 0, end = aryay.length) {
+  function fill(array, value, start = 0, end = array.length) {
     for (let i = start; i < end; i++) {
-      aryay[i] = value
+      array[i] = value
     }
-    return aryay
+    return array
   }
 
-  function identity(value) {
-    return value
-  }
-
-  function findIndex(aryay, predicate, fromIndex = 0) {
-    for (let i = fromIndex; i < aryay.length; i++) {
-      if (predicate(aryay[i], i, aryay)) {
-        return i
+  function findIndex(array, predicate, fromIndex = 0) {
+    let f = iteratee(predicate)
+    for (var i = fromIndex; i < array.length; i++) {
+      if (f(array[i])) {
+        break
       }
     }
-    return -1
+    return i
   }
+  // if (typeof predicate == "function") {
+  //   for (let i = fromIndex; i < array.length; i++) {
+  //     if (predicate(array[i])) {
+  //       return i
+  //     }
+  //   }
+  //   return -1
+  // }
+  // if (typeof predicate == 'object') {
+  //   for (let i = fromIndex; i < array.length; i++) {
+  //     for (let j in array[i]) {
+  //       if (predicate[j] && array[i][j] == predicate[j])
+  //         return i
+  //     }
+  //   }
+  //   return -1
+  // }
+  // if (Array.isArray(predicate)) {
+  //   for (let i = fromIndex; i < array.length; i++) {
+  //     for (let j in array[i]) {
+  //       if (predicate[0] == j && predicate[1] == array[i][j])
+  //         return i
+  //     }
+  //   }
+  //   return -1
+  // }
+  // if (typeof predicate == 'string') {
+  //   for (let i = fromIndex; i < array.length; i++) {
+  //     for (let j in array[i]) {
+  //       if (array[i][predicate])
+  //         return i
+  //     }
+  //   }
+  //   return -1
+  // }
 
-  function findLastIndex(aryay, predicate, fromIndex = aryay.length - 1) {
-    for (let i = fromIndex; i >= 0; i--) {
-      if (predicate(aryay[i], i, aryay)) {
-        return i
+  function findLastIndex(array, predicate, fromIndex = array.length - 1) {
+    let f = iteratee(predicate)
+    for (var i = fromIndex; i >= 0; i--) {
+      if (f(array[i])) {
+        break
       }
     }
-    return -1
+    return i
   }
+  // function findLastIndex(array, predicate, fromIndex = array.length - 1) {
+  //   if (typeof predicate == "function") {
+  //     for (let i = fromIndex; i >= 0; i--) {
+  //       if (predicate(array[i])) {
+  //         return i
+  //       }
+  //     }
+  //     return -1
+  //   }
+  //   if (typeof predicate == 'object') {
+  //     for (let i = fromIndex; i >= 0; i--) {
+  //       for (let j in array[i]) {
+  //         if (predicate[j] && array[i][j] == predicate[j])
+  //           return i
+  //       }
+  //     }
+  //     return -1
+  //   }
+  //   if (Array.isArray(predicate)) {
+  //     for (let i = fromIndex; i >= 0; i--) {
+  //       for (let j in array[i]) {
+  //         if (predicate[0] == j && predicate[1] == array[i][j])
+  //           return i
+  //       }
+  //     }
+  //     return -1
+  //   }
+  //   if (typeof predicate == 'string') {
+  //     for (let i = fromIndex; i >= 0; i--) {
+  //       for (let j in array[i]) {
+  //         if (array[i][predicate])
+  //           return i
+  //       }
+  //     }
+  //     return -1
+  //   }
+  // }
+
 
   function flatten(ary) {
     return [].concat.apply([], ary)
+    // return [].concat(...ary)
   }
 
   function flattenDeep(ary) {
@@ -109,8 +287,8 @@ var wenling1 = function () {
     return res
   }
 
-  function head(aryay) {
-    return (aryay && aryay.length) ? aryay[0] : undefined
+  function head(array) {
+    return (array && array.length) ? array[0] : undefined
   }
 
   function initial(ary) {
@@ -139,18 +317,18 @@ var wenling1 = function () {
     return -1
   }
 
-  function join(aryay, separator = ',') {
+  function join(array, separator = ',') {
     var res = ''
-    for (var i = 0; i < aryay.length - 1; i++) {
-      res += '' + aryay[i] + separator
+    for (var i = 0; i < array.length - 1; i++) {
+      res += '' + array[i] + separator
     }
-    res = res + aryay[aryay.length - 1]
+    res = res + array[array.length - 1]
     return res
   }
 
-  function sortedIndex(aryay, value) {
+  function sortedIndex(array, value) {
     let l = 0
-    let r = aryay.length
+    let r = array.length
     while (r - l > 1) {
       let m = (l + r) >> 1
       if (m < value) {
@@ -162,17 +340,17 @@ var wenling1 = function () {
     return l
   }
 
-  function reverse(aryay) {
+  function reverse(array) {
     let l = 0
-    let r = aryay.length - 1
+    let r = array.length - 1
     while (l < r) {
-      var tmp = aryay[l]
-      aryay[l] = aryay[r]
-      aryay[r] = tmp
+      var tmp = array[l]
+      array[l] = array[r]
+      array[r] = tmp
       l++
       r--
     }
-    return aryay
+    return array
   }
 
   function toArray(value) {
@@ -183,32 +361,35 @@ var wenling1 = function () {
     return res
   }
 
-  function every(fn, predicate) {
-    //   if (typeof fn == "function") {
-    //     var arr = this
-    //     for (var i = 0; i < arr.length; i++) {
-    //       var result = fn.call(predicate, arr[i], i, arr)
-    //       if (!result) return false
-    //     }
-    //     return true
-    //   }
+  function every(ary, predicate) {
+    predicate = iteratee(predicate)
+    for (let i = 0; i < ary.length; i++) {
+      if (!predicate(ary[i], i, ary)) {
+        return false
+      }
+    }
+    return true
   }
 
-  function filter(fn, predicate) {
-    // if (typeof fn == "function") {
-    //   var arr = this
-    //   var temp = []
-    //   for (var i = 0; i < arr.length; i++) {
-    //     var result = fn.call(predicate, arr[i], i, arr)
-    //     if (result) temp.push(arr[i])
-    //   }
-    //   return temp
-    // }
+  function filter(ary, predicate) {
+    predicate = iteratee(predicate)
+    let res = []
+    for (let i = 0; i < ary.length; i++) {
+      if (predicate(ary[i])) {
+        res.push(ary[i])
+      }
+    }
+    return res
   }
 
 
-  function find(collection, predicate) {
-
+  function find(collection, predicate, fromIndex = 0) {
+    predicate = iteratee(predicate)
+    for (let i = fromIndex; i < collection.length; i++) {
+      if (predicate(collection[i])) {
+        return collection[i]
+      }
+    }
   }
 
   function max(ary) {
@@ -303,6 +484,22 @@ var wenling1 = function () {
     return Object.prototype.toString.call(val) === '[object Array]'
   }
 
+  const identity = it => it
+  function groupBy(array, predicate = identity) {
+    var result = {}
+    for (var i = 0; i < array.length; i++) {
+      var key = predicate(array[i], i, array)
+      if (!Array.isArray(result[key])) {
+        result[key] = []
+      }
+      result[key].push(array[i])
+    }
+    return result
+  }
+
+
+
+
   return {
     chunk,
     compact,
@@ -310,7 +507,6 @@ var wenling1 = function () {
     drop,
     dropRight,
     fill,
-    identity,
     findIndex,
     findLastIndex,
     flatten,
@@ -336,7 +532,8 @@ var wenling1 = function () {
     sum,
     sumBy,
     curry,
-    isArray
+    isArray,
+    groupBy,
 
   }
 }()
