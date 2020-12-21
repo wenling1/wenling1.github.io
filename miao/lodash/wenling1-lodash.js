@@ -1,5 +1,9 @@
 var wenling1 = function () {
 
+  function identity(val) {
+    return val
+  }
+
   function get(object, path, defaultValues) {
     var names = path.split('.')
     for (var name of names) {
@@ -371,9 +375,6 @@ var wenling1 = function () {
     return sum
   }
 
-  function curry() {
-
-  }
 
   function isArray(val) {
     return Object.prototype.toString.call(val) === '[object Array]'
@@ -397,6 +398,14 @@ var wenling1 = function () {
 
 
   return {
+    identity,
+    get,
+    property,
+    matches,
+    isMatch,
+    matchesProperty,
+    bind,
+    iteratee,
     chunk,
     compact,
     concat,
@@ -427,9 +436,9 @@ var wenling1 = function () {
     minBy,
     sum,
     sumBy,
-    curry,
     isArray,
     groupBy,
+
 
   }
 }()
