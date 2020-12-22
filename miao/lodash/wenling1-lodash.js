@@ -23,9 +23,9 @@ var wenling1 = function () {
   }
 
   function isMatch(obj, src) {
-    for (var key in src) {
-      if (src[key] && typeof src[key] == 'object') {
-        if (!isMatch(src[obj], obj[key])) {
+    for (let key in src) {
+      if (src[key] && typeof src[key] === 'object') {
+        if (!isMatch(obj[key], src[key])) {
           return false
         }
       } else {
@@ -404,9 +404,7 @@ var wenling1 = function () {
   }
 
   function differenceBy(ary, ...args) {
-    predicate = iteratee(...args.pop())
-    let values = [].concat(...args)
-    return ary.filter(x => values.every(value => iteratee(value) != iteratee(x)))
+
   }
 
   function ary(f, n = f.length) {
@@ -440,7 +438,7 @@ var wenling1 = function () {
 
   function flip(func) {
     return function (...args) {
-      return func(...args.reverse)
+      return func(...args.reverse())
     }
   }
 
@@ -452,9 +450,10 @@ var wenling1 = function () {
 
   function spread(func) {
     return function (ary) {
-      func.apply(this, ary)
+      return func.apply(this, ary)
     }
   }
+
 
 
 
