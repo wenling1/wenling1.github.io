@@ -375,7 +375,6 @@ var wenling1 = function () {
     return sum
   }
 
-
   function isArray(val) {
     return Object.prototype.toString.call(val) === '[object Array]'
   }
@@ -392,6 +391,71 @@ var wenling1 = function () {
     }
     return result
   }
+
+  function difference(ary, ...args) {
+    let res = []
+    let values = [].concat(...args)
+    for (let i = 0; i < ary.length; i++) {
+      if (values.indexOf(ary[i]) == -1) {
+        res.push(ary[i])
+      }
+    }
+    return res
+  }
+
+  function differenceBy(ary, ...args) {
+    predicate = iteratee(...args.pop())
+    let values = [].concat(...args)
+    return ary.filter(x => values.every(value => iteratee(value) != iteratee(x)))
+  }
+
+  function ary(f, n = f.length) {
+    return function (...args) {
+      return f(...args.slice(0, n))
+    }
+  }
+
+  function before(n, func) {
+    var c = 0
+    var result
+    return function (...args) {
+      if (c < n) {
+        return result = func.call(this, ...args)
+      } else {
+        c++
+        return result
+      }
+    }
+  }
+
+  function after(n, func) {
+    var c = 0
+    return function (...args) {
+      c++
+      if (c > n) {
+        return func.call(this, ...args)
+      }
+    }
+  }
+
+  function flip(func) {
+    return function (...args) {
+      return func(...args.reverse)
+    }
+  }
+
+  function negate(predicate) {
+    return function (...args) {
+      return !predicate(...args)
+    }
+  }
+
+  function spread(func) {
+    return function (ary) {
+      func.apply(this, ary)
+    }
+  }
+
 
 
 
@@ -438,6 +502,14 @@ var wenling1 = function () {
     sumBy,
     isArray,
     groupBy,
+    difference,
+    differenceBy,
+    ary,
+    before,
+    after,
+    flip,
+    negate,
+    spread,
 
 
   }
