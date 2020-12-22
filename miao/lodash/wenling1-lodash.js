@@ -404,7 +404,16 @@ var wenling1 = function () {
   }
 
   function differenceBy(ary, ...args) {
+    if (Array.isArray(args[args.length - 1])) {
+      return difference(ary, ...values)
+    }
+    let predicate = iteratee(args.pop())
+    let values = [].concat(...args)
 
+    // if (predicate(values) !== predicate(n)) {
+    // }
+
+    // return array.filter(e => values.every(value => predicate(value) != predicate(e)))
   }
 
   function ary(f, n = f.length) {
@@ -454,10 +463,41 @@ var wenling1 = function () {
     }
   }
 
+  function forOwn(obj, iterator) {
+    var hasOwn = Object.prototype.hasOwnProperty
+    for (var key in obj) {
+      if (hasOwn.call(obj, key)) {
+        if (iterator(obj[key], key, obj) === false) {
+          break
+        }
+      }
+    }
+    return obj
+  }
 
+  var a = 1103515245
+  var c = 12345
+  var m = 2 ** 31
+  var x = 5
+  function random() {
+    return x = (a * x + c) % m
+  }
 
-
-
+  function map(collection, iteratee) {
+    let result = []
+    iteratee = iteratee(iteratee)
+    if (Aray.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        res.push(iteratee(collection[i], i, collection))
+      }
+    }
+    if (typeof collection === 'object') {
+      for (let item in collection) {
+        res.push(iteratee(collection[item], item, collection))
+      }
+    }
+    return res
+  }
 
 
   return {
@@ -509,7 +549,8 @@ var wenling1 = function () {
     flip,
     negate,
     spread,
-
-
+    forOwn,
+    random,
+    map,
   }
 }()
