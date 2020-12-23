@@ -488,15 +488,15 @@ var wenling1 = function () {
     iteratee = iteratee(iteratee)
     if (Aray.isArray(collection)) {
       for (let i = 0; i < collection.length; i++) {
-        res.push(iteratee(collection[i], i, collection))
+        result.push(iteratee(collection[i], i, collection))
       }
     }
     if (typeof collection === 'object') {
       for (let item in collection) {
-        res.push(iteratee(collection[item], item, collection))
+        result.push(iteratee(collection[item], item, collection))
       }
     }
-    return res
+    return result
   }
 
 
