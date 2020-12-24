@@ -475,14 +475,6 @@ var wenling1 = function () {
     return obj
   }
 
-  var a = 1103515245
-  var c = 12345
-  var m = 2 ** 31
-  var x = 5
-  function random() {
-    return x = (a * x + c) % m
-  }
-
   function map(collection, predicate) {
     let result = []
     predicate = iteratee(predicate)
@@ -496,21 +488,6 @@ var wenling1 = function () {
       }
     }
     return result
-  }
-
-  function map(collection, predicate) {
-    let res = []
-    predicate = iteratee(predicate)
-    if (isArray(collection)) {
-      for (let i = 0; i < collection.length; i++) {
-        res.push(predicate(collection[i], i, collection))
-      }
-    } else if (isObject) {
-      for (let key in collection) {
-        res.push(predicate(collection[key], key, collection))
-      }
-    }
-    return res
   }
 
   function mapValues(obj, predicate) {
@@ -543,6 +520,16 @@ var wenling1 = function () {
     }
   }
 
+  function dropRightWhile(array, predicate) {
+    var result = array
+    var f = iteratee(predicate)
+    for (var i = result.length - 1; i >= 0; i--) {
+      if (!f(result[i])) {
+        break
+      }
+    }
+    return result.slice(0, i + 1)
+  }
 
   return {
     identity,
@@ -594,10 +581,10 @@ var wenling1 = function () {
     negate,
     spread,
     forOwn,
-    random,
     map,
     mapValues,
     mapKeys,
     curry,
+    dropRightWhile,
   }
 }()
