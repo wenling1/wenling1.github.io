@@ -483,20 +483,64 @@ var wenling1 = function () {
     return x = (a * x + c) % m
   }
 
-  function map(collection, iteratee) {
+  function map(collection, predicate) {
     let result = []
-    iteratee = iteratee(iteratee)
-    if (Aray.isArray(collection)) {
+    predicate = iteratee(predicate)
+    if (Array.isArray(collection)) {
       for (let i = 0; i < collection.length; i++) {
-        result.push(iteratee(collection[i], i, collection))
+        result.push(predicate(collection[i], i, collection))
       }
-    }
-    if (typeof collection === 'object') {
+    } else if (typeof collection === 'object') {
       for (let item in collection) {
-        result.push(iteratee(collection[item], item, collection))
+        result.push(predicate(collection[item], item, collection))
       }
     }
     return result
+  }
+
+  function map(collection, predicate) {
+    let res = []
+    predicate = iteratee(predicate)
+    if (isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        res.push(predicate(collection[i], i, collection))
+      }
+    } else if (isObject) {
+      for (let key in collection) {
+        res.push(predicate(collection[key], key, collection))
+      }
+    }
+    return res
+  }
+
+  function mapValues(obj, predicate) {
+    predicate = iteratee(predicate)
+    let result = {}
+    for (var key in obj) {
+      var val = obj[key]
+      result[key] = predicate(val, key, obj)
+    }
+    return result
+  }
+
+  function mapKeys(obj, predicate) {
+    predicate = iteratee(predicate)
+    var result = {}
+    for (var key in obj) {
+      var val = obj[key]
+      result[predicate(val, key, obj)] = val
+    }
+    return result
+  }
+
+  function curry(f, length = f.length) {
+    return function (...args) {
+      if (args.length < length) {
+        return curry(f.bind(null, ...args), length - args.length)
+      } else {
+        return f(...args)
+      }
+    }
   }
 
 
@@ -552,5 +596,8 @@ var wenling1 = function () {
     forOwn,
     random,
     map,
+    mapValues,
+    mapKeys,
+    curry,
   }
 }()
